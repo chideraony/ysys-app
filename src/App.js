@@ -1,16 +1,15 @@
 import './App.css';
-import React from 'react';
+import React, {useState} from 'react';
 import { HeaderComponent } from './components/Header/HeaderComponent';
 import { SidebarComponent } from './components/Sidebar/SidebarComponent';
 import { FeedComponent } from './components/Feed/FeedComponent';
 
-function App() {
 
-    // TODO - this is the "main" component for our app, and it will include all the global state that we care about
-    //  This should include things like:
-    //  * the sidebar expanded state
-    //  * the selected category (books/characters/houses)
-    //  * the feed results
+function App() {
+    const [sidebarCategories, setSidebarCategories] = useState(); 
+    const [searchInput, setSearchInput] = useState();
+    const [sidebarLimit, setSidebarLimit] = useState();
+    const [responseData, setResponseData] = useState();
 
     // TODO [STRETCH] - This could also include
     //  * the search term (if there is one)
