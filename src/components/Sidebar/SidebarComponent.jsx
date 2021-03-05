@@ -15,9 +15,18 @@ import {
 } from "@brandwatch/axiom-components";
 
 // TODO - make sure SidebarComponent is expecting the right props!
-export const SidebarComponent = () => {
+export const SidebarComponent = (props) => {
+  const {
+    setSidebarCategories,
+    setSidebarLimit
+  } = props;
+
   const items = [10, 25, 50];
-  const [selectedItem, setSelectedItem] = useState();
+  const [selectedItem, setSelectedItem] = useState(10);
+
+  const handleDropdownChange = (value) => {
+    setSidebarLimit(value);
+  }
 
   return (
     <div className={"sidebar"}>
@@ -31,7 +40,7 @@ export const SidebarComponent = () => {
         <DropdownTarget>
           <TextInput
             isTarget
-            onChange={() => {}}
+            onChange={handleDropdownChange}
             placeholder="Pick an Option"
             value={selectedItem}
           >
@@ -44,7 +53,10 @@ export const SidebarComponent = () => {
               {items.map((item) => (
                 <DropdownMenuItem
                   key={item}
-                  onClick={() => setSelectedItem(item)}
+                  onClick={() => {
+                    setSelectedItem(item)
+                    handleDropdownChange(item)
+                  }}
                   selected={selectedItem === item}
                 >
                   {item}

@@ -8,12 +8,13 @@ import { Base } from "@brandwatch/axiom-components";
 
 
 function App() {
-    const [sidebarCategories, setSidebarCategories] = useState(); 
+    const [sidebarCategories, setSidebarCategories] = useState();
     const [searchInput, setSearchInput] = useState();
-    const [sidebarLimit, setSidebarLimit] = useState();
+    const [sidebarLimit, setSidebarLimit] = useState(10);
     const [responseData, setResponseData] = useState();
 
-    
+    // do api call with (sidebarCategories, searchInput, sidebarLimit)
+    // use response to set setResponseData(response)
 
     // TODO [STRETCH] - This could also include
     //  * the search term (if there is one)
@@ -39,8 +40,8 @@ function App() {
     return (
         <Base className="app ax-theme--day">
             <HeaderComponent />
-            <SidebarComponent />
-            <FeedComponent />
+            <SidebarComponent setSidebarCategories={setSidebarCategories} setSidebarLimit={setSidebarLimit}/>
+            <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
         </Base>
     );
 }
