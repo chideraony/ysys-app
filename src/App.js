@@ -1,8 +1,10 @@
 import './App.css';
-import React, {useState} from 'react';
+import React, {Component, useState} from 'react';
 import { HeaderComponent } from './components/Header/HeaderComponent';
 import { SidebarComponent } from './components/Sidebar/SidebarComponent';
 import { FeedComponent } from './components/Feed/FeedComponent';
+import { Base } from "@brandwatch/axiom-components";
+
 
 
 function App() {
@@ -10,6 +12,8 @@ function App() {
     const [searchInput, setSearchInput] = useState();
     const [sidebarLimit, setSidebarLimit] = useState();
     const [responseData, setResponseData] = useState();
+
+    
 
     // TODO [STRETCH] - This could also include
     //  * the search term (if there is one)
@@ -33,11 +37,11 @@ function App() {
 
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
     return (
-        <div className="app">
+        <Base className="app ax-theme--day">
             <HeaderComponent />
             <SidebarComponent />
             <FeedComponent />
-        </div>
+        </Base>
     );
 }
 
