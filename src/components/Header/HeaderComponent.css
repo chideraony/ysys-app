@@ -2,6 +2,33 @@
 
 .header {
     margin: 10px;
-    padding: 10px;
+    padding: 10vh 10vh;
     border: 1px solid red;
+    background-color: rgba(100,200,130,60);
+}
+
+
+.pagelinks{
+	display: flex;
+	justify-content: space-around;
+	width: 40%;
+	padding-left: 40vh;
+}
+
+.pagelinks li{
+	list-style: none;
+	padding-right: 13vh;
+}
+
+.pagelinks a{
+	padding: 6px 5px; 
+	text-decoration: none;
+	color: rgb(255,255,255);
+	font-family: 'Montserrat', sans-serif;
+	font-size: 18px;
+	cursor: pointer;
+}
+
+.pagelinks button{
+	background-color: rgba(10,20,30);
 }
