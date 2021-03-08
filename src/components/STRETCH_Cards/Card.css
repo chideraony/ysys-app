@@ -1,3 +1,16 @@
 /* TODO write some card styles */
-.card {
+/* .card {
+  height: 100%;
+  position: relative;
 }
+
+.card:hover {
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.grid {
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+} */
+
