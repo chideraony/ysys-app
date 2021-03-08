@@ -6,7 +6,7 @@
     height: 100%;
     background-color: cadetblue;
     width: 250px;
-    position: absolute;
+    position: relative;
 }
 
 /* TODO expanded styles */
