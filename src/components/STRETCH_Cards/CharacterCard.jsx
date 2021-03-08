@@ -34,7 +34,7 @@ export const CharacterCard = ({ }) => {
 
         <button className="fetch-button" onClick={fetchData}>
           Fetch Data
-        </button> 
+        </button>
 
         <br/>
 
@@ -43,7 +43,7 @@ export const CharacterCard = ({ }) => {
           character.map((character, index) => {
             const titles = character.titles.join(', ');
             const aliases = character.aliases.join(', ');
-        
+
             return (
 
              <Grid direction="column" horizontalAlign="around">
@@ -52,36 +52,35 @@ export const CharacterCard = ({ }) => {
 
               <Card border borderRadius="medium" shade="shade-1" shadow size="medium" hover key={index}>
               <CardContent size="medium">
-              
+
               <div className="character" >
                 <h3>Character {index + 1}</h3>
                 <h2>{character.name}</h2>
                 <Separator/>
-                
+
 
                 <div className="details" key="index">
-
                   <p>👨: {character.playedBy}</p>
                   <p>📖: {character.gender}</p>
                   <p>🏘️: {titles}</p>
                   <p>⏰: {aliases}</p>
 
-                  
 
-                  
+
+
                 </div>
               </div>
               </CardContent>
               </Card>
-              
+
               </GridCell>
 
               </Grid>
 
-              
+
             );
           })}
       </div>
-    
+
     </div>
 };
