@@ -11,16 +11,6 @@ export const getData = (searchInput, sidebarLimit, sidebarCategories, setRespons
         .then(response => response.json())
 }
 
-
-
-/*
-export const getData = (searchInput, sidebarCategories, sidebarLimit) => {
-        return fetch(`https://www.anapioficeandfire.com/api/${sidebarCategories}/pageSize=${sidebarLimit}`)
-        .then((response) => response.json())
-        .then((responseData) => setResponseData(responseData));
-    };
-    */
-
 // TODO [STRETCH]
 //  customise function (or create another function) to retrieve extra data based on configuration (number of results/pages/search
 
