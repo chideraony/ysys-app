@@ -3,15 +3,24 @@ import React, {Component, useState} from 'react';
 import { HeaderComponent } from './components/Header/HeaderComponent';
 import { SidebarComponent } from './components/Sidebar/SidebarComponent';
 import { FeedComponent } from './components/Feed/FeedComponent';
+import { getData } from './api/api';
 import { Base } from "@brandwatch/axiom-components";
 
 
-
 function App() {
-    const [sidebarCategories, setSidebarCategories] = useState();
-    const [searchInput, setSearchInput] = useState();
-    const [sidebarLimit, setSidebarLimit] = useState(10);
+    const [sidebarCategories, setSidebarCategories] = useState(); 
+    const [searchInput, setSearchInput] = useState(); 
+    const [sidebarLimit, setSidebarLimit] = useState(10); 
     const [responseData, setResponseData] = useState();
+    
+
+    const fetchFilteredData = () => {
+        getData(searchInput, sidebarCategories, sidebarLimit)
+       
+    };
+    
+    
+
 
     // do api call with (sidebarCategories, searchInput, sidebarLimit)
     // use response to set setResponseData(response)
@@ -39,7 +48,7 @@ function App() {
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
     return (
         <Base className="app ax-theme--day">
-            <HeaderComponent />
+            <HeaderComponent setSearchInput={setSearchInput} fetchFilteredData={fetchFilteredData} />
             <SidebarComponent setSidebarCategories={setSidebarCategories} setSidebarLimit={setSidebarLimit}/>
             <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
         </Base>
