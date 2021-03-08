@@ -36,6 +36,8 @@ export const HouseCard = () => {
           Fetch Data
         </button> 
 
+      
+
         <br/>
 
         <div className={"houses"} style={{height: "100%", width: "100%"}}>
@@ -43,13 +45,15 @@ export const HouseCard = () => {
           house.map((house, index) => {
             const titles = house.titles.join(', ');
 
+            
+
             return (
 
-             <Grid direction="column" >
+        <Grid className="grid" direction="row" horizontalAlign="around" gutters="medium" responsive wrap>
 
-            <GridCell direction="column" fit="true" width="300px">
+            <GridCell direction="row" width="25" responsive wrap>
 
-              <Card border borderRadius="medium" shade="shade-1" shadow size="medium" hover key={index}>
+              <Card className="card" border borderRadius="medium" shade="shade-1" shadow size="medium" hover key={index} >
               <CardContent size="medium">
               
               <div className="house" >
@@ -71,11 +75,12 @@ export const HouseCard = () => {
               </GridCell>
 
               </Grid>
-
               
             );
           })}
       </div>
+
+
     
     </div>
 };

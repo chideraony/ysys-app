@@ -54,16 +54,16 @@ export const BookCard = () => {
         Fetch Data
       </button>
 
-      <div className={"books"} style={{ height: "100%", width: "100%" }}>
+      <div className={"books"} style={{ height: "100%", width: "100%"}}>
         {books &&
           books.map((book, index) => {
             const cleanedDate = new Date(book.released).toDateString();
             const authors = book.authors.join(", ");
 
             return (
-              <Grid direction="column" responsive wrap>
-                <GridCell direction="column" fit="medium" width="25">
-                  <Card
+              <Grid className="grid" direction="row" responsive wrap horizontalAlign="around">
+                <GridCell direction="column" responsive wrap width="25">
+                  <Card className="card"
                     border
                     borderRadius="medium"
                     shade="shade-1"

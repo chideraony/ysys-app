@@ -46,9 +46,9 @@ export const CharacterCard = ({ }) => {
 
             return (
 
-             <Grid direction="column" horizontalAlign="around">
+             <Grid direction="row" horizontalAlign="around">
 
-            <GridCell direction="column" fit="true" width="300px">
+            <GridCell direction="column" fit="true" width="25">
 
               <Card border borderRadius="medium" shade="shade-1" shadow size="medium" hover key={index}>
               <CardContent size="medium">
