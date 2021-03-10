@@ -11,7 +11,7 @@ import {
 
 // TODO - make sure HeaderComponent is expecting the right props (if any)!
 
-export const HeaderComponent = ({searchInput, setSearchInput, fetchFilteredData,}) => {
+export const HeaderComponent = (searchInput, fetchFilteredData) => {
   return (
     <header className={"header"}>
       {/* TODO [STRETCH] - add in any controls that you'd like in your header

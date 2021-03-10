@@ -65,6 +65,8 @@ export const SidebarComponent = (props) => {
       </Dropdown>
       <Button onClick={() => {}}>Search</Button>
 
+
+
       {/* TODO - flesh out this component to include all controls for configuring
       your data retrieval. This must include the category
       (books/characters/houses) [STRETCH] Feel free to add anything else you
