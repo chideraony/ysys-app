@@ -12,11 +12,12 @@ import {
   DropdownContext,
   DropdownMenuItem,
   DropdownMenu,
+  Icon,
 } from "@brandwatch/axiom-components";
 
 // TODO - make sure SidebarComponent is expecting the right props!
 export const SidebarComponent = (props) => {
-  const { setSidebarCategories, setSidebarLimit, expanded} = props;
+  const { setSidebarCategories, setSidebarLimit, expanded, fetchFilteredData} = props;
 
   const items = [10, 25, 50];
   const [selectedItem, setSelectedItem] = useState(10);

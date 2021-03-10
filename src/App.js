@@ -12,17 +12,17 @@ function App() {
     const [searchInput, setSearchInput] = useState(); 
     const [sidebarLimit, setSidebarLimit] = useState(10); 
     const [responseData, setResponseData] = useState();
-    const [sidebarExpanded, setSidebardExpanded] = useState(true)
+    const [sidebarExpanded, setSidebarExpanded] = useState(true);
     
 
     const fetchFilteredData = () => {
         getData(searchInput, sidebarCategories, sidebarLimit)
-       
+        .then((response) => setResponseData(response))
     };
     
     useEffect(() => {
-        fetchFilteredData().then((response) => setResponseData(response));
-    }, [sidebarCategories, searchInput, sidebarLimit]);
+        fetchFilteredData();
+    });
 
 
 
@@ -52,8 +52,8 @@ function App() {
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
     return (
         <Base className="app ax-theme--day">
-            <HeaderComponent setSearchInput={setSearchInput} fetchFilteredData={fetchFilteredData} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
-            <SidebarComponent setSidebarCategories={setSidebarCategories} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded}/>
+            <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} fetchFilteredData={fetchFilteredData} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
+            <SidebarComponent setSidebarCategories={setSidebarCategories} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
             <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
         </Base>
     );

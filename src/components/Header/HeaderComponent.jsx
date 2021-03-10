@@ -10,7 +10,7 @@ import {
 
 // TODO - make sure HeaderComponent is expecting the right props (if any)!
 
-export const HeaderComponent = (searchInput, fetchFilteredData, sidebarExpanded) => {
+export const HeaderComponent = (searchInput, setSearchInput, fetchFilteredData, setSidebarExpanded, sidebarExpanded) => {
   return (
     <header className={"header"}>
       {/* TODO [STRETCH] - add in any controls that you'd like in your header
@@ -28,7 +28,7 @@ export const HeaderComponent = (searchInput, fetchFilteredData, sidebarExpanded)
         className={"header-search"}
         placeholder={"Search by name..."}
         value={searchInput}
-        // onChange={(e) => setSearchInput(e.target.value)}
+        onChange={(e) => setSearchInput(e.target.value)}
         onKeyPress={(e) => {
           if (e.key === "Enter") {
             fetchFilteredData();
