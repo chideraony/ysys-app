@@ -31,7 +31,7 @@ export const HeaderComponent = ({searchInput, setSearchInput, fetchFilteredData,
         onChange={(e) => setSearchInput(e.target.value)}
         onKeyPress={(e) => {
           if (e.key === "Enter") {
-            setSearchInput();
+            setSearchInput(searchInput);
           }
         }}
       >
@@ -40,7 +40,7 @@ export const HeaderComponent = ({searchInput, setSearchInput, fetchFilteredData,
           className="searchButton"
           variant="primary"
           align="right"
-          onClick={() => setSearchInput()}
+          onClick={() => setSearchInput(searchInput)}
         >
           Search
         </TextInputButton>

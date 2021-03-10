@@ -6,18 +6,19 @@ import { FeedComponent } from './components/Feed/FeedComponent';
 import { getData } from './api/api';
 import { Base } from "@brandwatch/axiom-components";
 
+const filterList = ['Characters', 'Houses', 'Books'];
 
 function App() {
-    const [sidebarCategories, setSidebarCategories] = useState(); 
-    const [searchInput, setSearchInput] = useState(); 
+    const [sidebarCategories, setSidebarCategories] = useState(filterList[0]); 
+    const [searchInput, setSearchInput] = useState(''); 
     const [sidebarLimit, setSidebarLimit] = useState(10); 
-    const [responseData, setResponseData] = useState();
+    const [responseData, setResponseData] = useState([]);
     const [sidebarExpanded, setSidebarExpanded] = useState(true);
     
 
     const fetchFilteredData = () => {
         getData(searchInput, sidebarCategories, sidebarLimit)
-        .then((response) => setResponseData(response))
+        .finally((response) => setResponseData(response))
     };
     
     useEffect(() => {
@@ -53,7 +54,7 @@ function App() {
     return (
         <Base className="app ax-theme--day">
             <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
-            <SidebarComponent setSidebarCategories={setSidebarCategories} setSearchInput={setSearchInput} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
+            <SidebarComponent filterList={filterList} setSidebarCategories={setSidebarCategories} sidebarCategories={sidebarCategories} setSearchInput={setSearchInput} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
             <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
         </Base>
     );

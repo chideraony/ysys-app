@@ -7,9 +7,12 @@
 
 export const getData = (searchInput, sidebarCategories, sidebarLimit) => {
     const search = searchInput ? `&name=${searchInput}` : '';
+    console.log(searchInput)
+    console.log(`https://anapioficeandfire.com/api/${sidebarCategories}?pageSize=${sidebarLimit}${search}`)
     return fetch(`https://anapioficeandfire.com/api/${sidebarCategories}?pageSize=${sidebarLimit}${search}`)
         .then(response => response.json())
 }
+
 
 // TODO [STRETCH]
 //  customise function (or create another function) to retrieve extra data based on configuration (number of results/pages/search

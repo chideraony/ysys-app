@@ -17,7 +17,7 @@ import {
 
 // TODO - make sure SidebarComponent is expecting the right props!
 export const SidebarComponent = (props) => {
-  const { setSidebarCategories, setSidebarLimit, expanded, setSearchInput} = props;
+  const { filterList, setSidebarCategories, sidebarCategories, setSidebarLimit, expanded, setSearchInput} = props;
 
   const items = [10, 25, 50];
   const [selectedItem, setSelectedItem] = useState(10);
@@ -30,11 +30,25 @@ export const SidebarComponent = (props) => {
     <div className={`app-sidebar ${expanded ? 'expanded' : 'collapsed'}`}>
       {expanded &&
         <>
-      <RadioButtonGroup>
+
+       {/*  <RadioButtonGroup>
         <RadioButton name="filter">Characters</RadioButton>
         <RadioButton name="filter">Books</RadioButton>
         <RadioButton name="filter">Houses</RadioButton>
-      </RadioButtonGroup>
+      </RadioButtonGroup> */}
+
+      <RadioButtonGroup>
+                {
+                    filterList.map(filter => {
+                        return <RadioButton key={filter}
+                                            name={'filter'}
+                                            checked={filter === sidebarCategories}
+                                            onChange={() => setSidebarCategories(filter)}>
+                            {filter}
+                        </RadioButton>
+                    })
+                }
+            </RadioButtonGroup>
 
       <Dropdown>
         <DropdownTarget>
