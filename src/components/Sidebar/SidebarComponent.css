@@ -1,5 +1,5 @@
 /* TODO general sidebar styles */
-.sidebar {
+.app-sidebar {
     padding: 10px;
     margin: 10px;
     border: 1px solid #ccc;
@@ -7,14 +7,16 @@
     background-color: cadetblue;
     width: 250px;
     position: relative;
+    transition: min-width 0.1s ease-out;
 }
 
 /* TODO expanded styles */
 .app-sidebar.expanded {
-    /* width: ??? */
+    min-width: 300px;
 }
 
 /* TODO collapsed styles */
 .app-sidebar.collapsed {
-    /* width: ??? */
+    min-width: 65px;
 }
+

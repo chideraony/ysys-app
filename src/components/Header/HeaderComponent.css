@@ -6,3 +6,8 @@
   background-color: rgb(255, 255, 255);
   text-align: center;
 }
+
+.header .expand-button {
+  text-align: left;
+  left: 10px;
+}

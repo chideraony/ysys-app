@@ -12,11 +12,12 @@ import {
   DropdownContext,
   DropdownMenuItem,
   DropdownMenu,
+  Icon,
 } from "@brandwatch/axiom-components";
 
 // TODO - make sure SidebarComponent is expecting the right props!
 export const SidebarComponent = (props) => {
-  const { setSidebarCategories, setSidebarLimit } = props;
+  const { setSidebarCategories, setSidebarLimit, expanded, fetchFilteredData} = props;
 
   const items = [10, 25, 50];
   const [selectedItem, setSelectedItem] = useState(10);
@@ -26,7 +27,9 @@ export const SidebarComponent = (props) => {
   };
 
   return (
-    <div className={"sidebar"}>
+    <div className={`app-sidebar ${expanded ? 'expanded' : 'collapsed'}`}>
+      {expanded &&
+        <>
       <RadioButtonGroup>
         <RadioButton name="filter">Characters</RadioButton>
         <RadioButton name="filter">Books</RadioButton>
@@ -63,7 +66,18 @@ export const SidebarComponent = (props) => {
           </DropdownContext>
         </DropdownSource>
       </Dropdown>
-      <Button onClick={() => {}}>Search</Button>
+      </>
+      }
+
+      <Button onClick={() => fetchFilteredData()}>
+            {expanded ? 'Search' : <Icon name={'refresh'} />}
+      </Button>
+
+      </div>
+  );
+};
+
+
 
       {/* TODO - flesh out this component to include all controls for configuring
       your data retrieval. This must include the category
@@ -73,6 +87,3 @@ export const SidebarComponent = (props) => {
       change what you can see in the search bar based on what you are searching
       for. E.g add a dropdown to determine which field you're searching on
       ("name"/"title"/"alias") */}
-    </div>
-  );
-};

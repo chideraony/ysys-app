@@ -1,5 +1,5 @@
 import './App.css';
-import React, {Component, useState} from 'react';
+import React, {Component, useEffect, useState} from 'react';
 import { HeaderComponent } from './components/Header/HeaderComponent';
 import { SidebarComponent } from './components/Sidebar/SidebarComponent';
 import { FeedComponent } from './components/Feed/FeedComponent';
@@ -12,14 +12,18 @@ function App() {
     const [searchInput, setSearchInput] = useState(); 
     const [sidebarLimit, setSidebarLimit] = useState(10); 
     const [responseData, setResponseData] = useState();
+    const [sidebarExpanded, setSidebarExpanded] = useState(true);
     
 
     const fetchFilteredData = () => {
         getData(searchInput, sidebarCategories, sidebarLimit)
-       
+        .then((response) => setResponseData(response))
     };
     
-    
+    useEffect(() => {
+        fetchFilteredData();
+    });
+
 
 
     // do api call with (sidebarCategories, searchInput, sidebarLimit)
@@ -48,8 +52,8 @@ function App() {
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
     return (
         <Base className="app ax-theme--day">
-            <HeaderComponent setSearchInput={setSearchInput} fetchFilteredData={fetchFilteredData} />
-            <SidebarComponent setSidebarCategories={setSidebarCategories} setSidebarLimit={setSidebarLimit}/>
+            <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} fetchFilteredData={fetchFilteredData} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
+            <SidebarComponent setSidebarCategories={setSidebarCategories} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
             <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
         </Base>
     );
