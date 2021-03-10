@@ -52,8 +52,8 @@ function App() {
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
     return (
         <Base className="app ax-theme--day">
-            <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} fetchFilteredData={fetchFilteredData} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
-            <SidebarComponent setSidebarCategories={setSidebarCategories} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
+            <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
+            <SidebarComponent setSidebarCategories={setSidebarCategories} setSearchInput={setSearchInput} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
             <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
         </Base>
     );

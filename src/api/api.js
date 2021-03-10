@@ -5,9 +5,9 @@
 //  - houses
 
 
-export const getData = (searchInput, sidebarLimit, sidebarCategories) => {
+export const getData = (searchInput, sidebarCategories, sidebarLimit) => {
     const search = searchInput ? `&name=${searchInput}` : '';
-    return fetch(`https://anapioficeandfire.com/api/${sidebarCategories}?pageSize=${sidebarLimit}&name=${search}`)
+    return fetch(`https://anapioficeandfire.com/api/${sidebarCategories}?pageSize=${sidebarLimit}${search}`)
         .then(response => response.json())
 }
 

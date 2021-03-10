@@ -19,4 +19,7 @@
 .app-sidebar.collapsed {
     min-width: 65px;
 }
-
+.app-header .expand-button {
+    position: absolute;
+    left: 10px;
+  }

@@ -1,6 +1,6 @@
 /* TODO add some general header styles */
 
-.header {
+/*.header {
   margin: 10px;
   border: 1px solid grey;
   background-color: rgb(255, 255, 255);
@@ -9,5 +9,30 @@
 
 .header .expand-button {
   text-align: left;
+  left: 10px;
+}
+*/
+
+.app-header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px;
+  min-height: 50px;
+  flex-shrink: 1;
+  z-index: 10;
+}
+.app-header .header-search {
+  position: absolute;
+  right: 10px;
+  width: 300px;
+}
+.app-header .expand-button {
+  position: absolute;
   left: 10px;
 }
