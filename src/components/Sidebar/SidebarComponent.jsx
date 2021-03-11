@@ -17,7 +17,7 @@ import {
 
 // TODO - make sure SidebarComponent is expecting the right props!
 export const SidebarComponent = (props) => {
-  const { filterList, setSidebarCategories, sidebarCategories, setSidebarLimit, expanded, setSearchInput} = props;
+  const { filterList, setSidebarCategories, sidebarCategories, setSidebarLimit, expanded, onSearch} = props;
 
   const items = [10, 25, 50];
   const [selectedItem, setSelectedItem] = useState(10);
@@ -83,7 +83,7 @@ export const SidebarComponent = (props) => {
       </>
       }
 
-      <Button onClick={() => setSearchInput()}>
+      <Button onClick={() => onSearch()}>
             {expanded ? 'Search' : <Icon name={'refresh'} />}
       </Button>
 

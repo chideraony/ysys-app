@@ -18,12 +18,12 @@ function App() {
 
     const fetchFilteredData = () => {
         getData(searchInput, sidebarCategories, sidebarLimit)
-        .finally((response) => setResponseData(response))
+        .then((response) => setResponseData(response))
     };
     
-    useEffect(() => {
-        fetchFilteredData();
-    });
+    // useEffect(() => {
+    //     fetchFilteredData();
+    // });
 
 
 
@@ -53,8 +53,10 @@ function App() {
     // TODO - pass in expanded sidebar state to components that need to know about it/update it.
     return (
         <Base className="app ax-theme--day">
-            <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
-            <SidebarComponent filterList={filterList} setSidebarCategories={setSidebarCategories} sidebarCategories={sidebarCategories} setSearchInput={setSearchInput} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
+            <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} 
+            setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} 
+            onSearch={() => fetchFilteredData()}/>
+            <SidebarComponent filterList={filterList} setSidebarCategories={setSidebarCategories} sidebarCategories={sidebarCategories} onSearch={() => fetchFilteredData()} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
             <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
         </Base>
     );

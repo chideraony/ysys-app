@@ -1,29 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
 import "./Card.css";
 import {
-  Card,
-  CardCaption,
   CardContent,
   CardImage,
-  Separator,
-  Grid,
-  GridCell,
 } from "@brandwatch/axiom-components";
 
 // TODO - create a component which displays information about Books
 
 // TODO - make sure BookCard is expecting the right props!
-export const BookCard = () => {
-  const [books, setBooks] = useState(null);
-
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://www.anapioficeandfire.com/api/books?pageSize=30"
-    );
-    console.log(response);
-    setBooks(response.data);
-  };
+export const BookCard = ({record}) => {
+  const book = record
+  const cleanedDate = new Date(book.released).toDateString();
+  const authors = book.authors.join(", ");
+  if(!book) return null
 
   function bookImage(name) {
     if (name === "A Game of Thrones") {
@@ -44,44 +33,17 @@ export const BookCard = () => {
   }
 
   return (
-    <div className={"feed"}>
-      {/* TODO - add a placeholder for an empty feed */}
-      {/* TODO - build up a list of results */}
-      {/* TODO [STRETCH] - update this list to be a list/grid of STRETCH_Cards */}
-      <h1>Game of Thrones Books</h1>
+              <div className="card">
 
-      <button className="fetch-button" onClick={fetchData}>
-        Fetch Data
-      </button>
-
-      <div className={"books"} style={{ height: "100%", width: "100%"}}>
-        {books &&
-          books.map((book, index) => {
-            const cleanedDate = new Date(book.released).toDateString();
-            const authors = book.authors.join(", ");
-
-            return (
-              <Grid className="grid" direction="row" responsive wrap horizontalAlign="around">
-                <GridCell direction="column" responsive wrap width="25">
-                  <Card className="card"
-                    border
-                    borderRadius="medium"
-                    shade="shade-1"
-                    shadow
-                    size="medium"
-                    hover
-                    key={index}
-                  >
                     <CardImage
                       className="bookCover"
-                      // src="https://p2.piqsels.com/preview/227/127/717/book-read-book-literature-learn.jpg" //Local images not read?
                       src={bookImage(book.name)}
                       style="max-width: 100%; height: 150px;"
                     ></CardImage>
                     <CardContent size="medium">
-                      <div className="book">
+                 
                         <h2>{book.name}</h2>
-                        <Separator />
+              
 
                         <div className="details" key="index">
                           <p>👨: {authors}</p>
@@ -89,14 +51,9 @@ export const BookCard = () => {
                           <p>🏘️: {book.country}</p>
                           <p>⏰: {cleanedDate}</p>
                         </div>
-                      </div>
-                    </CardContent>
-                  </Card>
-                </GridCell>
-              </Grid>
+                      </CardContent>
+                      
+              </div>
             );
-          })}
-      </div>
-    </div>
-  );
+
 };
