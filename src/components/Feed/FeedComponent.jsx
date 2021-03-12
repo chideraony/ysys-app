@@ -9,7 +9,8 @@ import {
 } from "@brandwatch/axiom-components";
 
 // TODO - make sure FeedComponent is expecting the right props!
-export const FeedComponent = ({responseData, setResponseData, sidebarCategories}) => {
+export const FeedComponent = ({responseData, sidebarCategories}) => {
+  console.log(responseData)
   return (
     <div className={"feed"}>
 
@@ -22,14 +23,18 @@ export const FeedComponent = ({responseData, setResponseData, sidebarCategories}
       <HouseCard /> */}
 
       {
-           responseData.map((responseData, index) => {
+           responseData && responseData.map((responseData, index) => {
+
                     return <div key={responseData.name + '-' + index}>
-                        {sidebarCategories === 'Characters' && <CharacterCard character={responseData} />}
+                        {sidebarCategories === 'Characters' && <CharacterCard character={responseData}/>}
                         {sidebarCategories === 'Houses' && <HouseCard house={responseData} />}
                         {sidebarCategories === 'Books' && <BookCard book={responseData} />}
+                        
                     </div>
                 })
+                
         }
+        
 
     </div>
 
