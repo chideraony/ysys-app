@@ -27,20 +27,20 @@ export const HeaderComponent = ({searchInput, setSearchInput, input, setInput, f
       <TextInput
         className={"header-search"}
         placeholder={"Search by name..."}
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        onKeyPress={(e) => {
-          if (e.key === "Enter") {
-            setSearchInput(input);
-          }
-        }}
+        // value={input}
+        onChange={(e) => setSearchInput(e.target.value)}
+        // onKeyPress={(e) => {
+        //   if (e.key === "Enter") {
+        //     setSearchInput(input);
+        //   }
+        // }}
       >
         <TextInputIcon align="left" name="magnify-glass" />
         <TextInputButton
           className="searchButton"
           variant="primary"
           align="right"
-          onClick={() => setSearchInput(input)}
+          onClick={() => fetchFilteredData()}
         >
           Search
         </TextInputButton>

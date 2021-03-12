@@ -9,7 +9,8 @@ import {
 } from "@brandwatch/axiom-components";
 
 // TODO - make sure FeedComponent is expecting the right props!
-export const FeedComponent = (props) => {
+export const FeedComponent = ({responseData, sidebarCategories}) => {
+  console.log(responseData)
   return (
     <div className={"feed"}>
 
@@ -17,9 +18,23 @@ export const FeedComponent = (props) => {
       {/* TODO - add a placeholder for an empty feed */}
       {/* TODO - build up a list of results */}
       {/* TODO [STRETCH] - update this list to be a list/grid of STRETCH_Cards */}
-      <BookCard />
+      {/* <BookCard />
       <CharacterCard />
-      <HouseCard />
+      <HouseCard /> */}
+
+      {
+           responseData && responseData.map((responseData, index) => {
+
+                    return <div key={responseData.name + '-' + index}>
+                        {sidebarCategories === 'Characters' && <CharacterCard character={responseData}/>}
+                        {sidebarCategories === 'Houses' && <HouseCard house={responseData} />}
+                        {sidebarCategories === 'Books' && <BookCard book={responseData} />}
+                        
+                    </div>
+                })
+                
+        }
+        
 
     </div>
 

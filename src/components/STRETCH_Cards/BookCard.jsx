@@ -14,16 +14,16 @@ import {
 // TODO - create a component which displays information about Books
 
 // TODO - make sure BookCard is expecting the right props!
-export const BookCard = () => {
-  const [books, setBooks] = useState(null);
+export const BookCard = ({book}) => {
+  // const [books, setBooks] = useState(null);
 
-  const fetchData = async () => {
-    const response = await axios.get(
-      "https://www.anapioficeandfire.com/api/books?pageSize=30"
-    );
-    console.log(response);
-    setBooks(response.data);
-  };
+  // const fetchData = async () => {
+  //   const response = await axios.get(
+  //     "https://www.anapioficeandfire.com/api/books?pageSize=30"
+  //   );
+  //   console.log(response);
+  //   setBooks(response.data);
+  // };
 
   function bookImage(name) {
     if (name === "A Game of Thrones") {
@@ -48,21 +48,21 @@ export const BookCard = () => {
       {/* TODO - add a placeholder for an empty feed */}
       {/* TODO - build up a list of results */}
       {/* TODO [STRETCH] - update this list to be a list/grid of STRETCH_Cards */}
-      <h1>Game of Thrones Books</h1>
-
+      {/* <h1>Game of Thrones Books</h1> */}
+{/* 
       <button className="fetch-button" onClick={fetchData}>
         Fetch Data
-      </button>
+      </button> */}
 
-      <div className={"books"} style={{ height: "100%", width: "100%"}}>
+      {/* <div className={"books"} style={{ height: "100%", width: "100%"}}>
         {books &&
-          books.map((book, index) => {
-            const cleanedDate = new Date(book.released).toDateString();
-            const authors = book.authors.join(", ");
+          books.map((book, index) => { */}
+            {/* const cleanedDate = new Date(book.released).toDateString();
+            const authors = book.authors.join(", "); */}
 
             return (
-              <Grid className="grid" direction="row" responsive wrap horizontalAlign="around">
-                <GridCell direction="column" responsive wrap width="25">
+              {/* <Grid className="grid" direction="row" responsive wrap horizontalAlign="around">
+                <GridCell direction="column" responsive wrap width="25"> */}
                   <Card className="card"
                     border
                     borderRadius="medium"
@@ -70,11 +70,11 @@ export const BookCard = () => {
                     shadow
                     size="medium"
                     hover
-                    key={index}
+                    
                   >
                     <CardImage
                       className="bookCover"
-                      // src="https://p2.piqsels.com/preview/227/127/717/book-read-book-literature-learn.jpg" //Local images not read?
+              
                       src={bookImage(book.name)}
                       style="max-width: 100%; height: 150px;"
                     ></CardImage>
@@ -84,19 +84,19 @@ export const BookCard = () => {
                         <Separator />
 
                         <div className="details" key="index">
-                          <p>👨: {authors}</p>
+                          {/* <p>👨: {authors}</p> */}
                           <p>📖: {book.numberOfPages} pages</p>
                           <p>🏘️: {book.country}</p>
-                          <p>⏰: {cleanedDate}</p>
+                          {/* <p>⏰: {cleanedDate}</p> */}
                         </div>
                       </div>
                     </CardContent>
                   </Card>
-                </GridCell>
-              </Grid>
+                {/* </GridCell>
+              </Grid> */}
             );
-          })}
+          {/* })} */}
       </div>
-    </div>
+    // </div>
   );
 };
