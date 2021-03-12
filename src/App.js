@@ -17,6 +17,7 @@ function App() {
     
 
     const fetchFilteredData = () => {
+        // setResponseData(null)
         getData(searchInput, sidebarCategories, sidebarLimit)
         .then((response) => setResponseData(response))
     };

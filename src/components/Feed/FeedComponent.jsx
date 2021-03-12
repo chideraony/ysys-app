@@ -14,8 +14,9 @@ const recordTypes = {
 
 // TODO - make sure FeedComponent is expecting the right props!
 export const FeedComponent = ({responseData, sidebarCategories}) => {
+  if (!responseData) return null;
   return (
-    <div className={"feed"}>
+    <div className={"feed"} key="index">
 
       {responseData.map((record) => {
         const Component = recordTypes[sidebarCategories]
