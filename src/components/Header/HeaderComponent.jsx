@@ -10,18 +10,28 @@ import {
 
 // TODO - make sure HeaderComponent is expecting the right props (if any)!
 
-export const HeaderComponent = ({searchInput, setSearchInput, input, setInput, fetchFilteredData, setSidebarExpanded, sidebarExpanded}) => {
+export const HeaderComponent = ({
+  searchInput,
+  setSearchInput,
+  input,
+  setInput,
+  fetchFilteredData,
+  setSidebarExpanded,
+  sidebarExpanded,
+}) => {
   return (
-    <header className={"header"}>
+    <header className={"app-header"}>
       {/* TODO [STRETCH] - add in any controls that you'd like in your header
              E.g, a search bar, a toggle button for the side bar, or just a plain header!
         */}
 
-      <Button className={'expand-button'}
-                variant={sidebarExpanded ? 'primary' : 'secondary'}
-                onClick={() => setSidebarExpanded(!sidebarExpanded)}>
-            {sidebarExpanded ? 'Hide filters' : 'Show filters'}
-        </Button>
+      <Button
+        className={"expand-button"}
+        variant={sidebarExpanded ? "primary" : "secondary"}
+        onClick={() => setSidebarExpanded(!sidebarExpanded)}
+      >
+        {sidebarExpanded ? "Hide filters" : "Show filters"}
+      </Button>
 
       <Heading textSize={"headline"}> A Better App of Ice and Fire </Heading>
       <TextInput

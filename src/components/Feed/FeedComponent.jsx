@@ -29,15 +29,14 @@ export const FeedComponent = ({responseData, sidebarCategories}) => {
                         {sidebarCategories === 'Characters' && <CharacterCard character={responseData}/>}
                         {sidebarCategories === 'Houses' && <HouseCard house={responseData} />}
                         {sidebarCategories === 'Books' && <BookCard book={responseData} />}
-                        
+
                     </div>
                 })
-                
+
         }
-        
+
 
     </div>
 
-    
   );
 };

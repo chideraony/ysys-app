@@ -1,25 +1,19 @@
 /* TODO general sidebar styles */
 .app-sidebar {
-    padding: 10px;
-    margin: 10px;
-    border: 1px solid #ccc;
-    height: 100%;
-    background-color: cadetblue;
-    width: 250px;
-    position: relative;
-    transition: min-width 0.1s ease-out;
+  padding: 10px;
+  border-right: 1px solid #ccc;
+  background-color: cadetblue;
+  width: 250px;
+  position: relative;
+  transition: min-width 0.1s ease-out;
 }
 
 /* TODO expanded styles */
 .app-sidebar.expanded {
-    min-width: 300px;
+  min-width: 300px;
 }
 
 /* TODO collapsed styles */
 .app-sidebar.collapsed {
-    min-width: 65px;
+  min-width: 65px;
 }
-.app-header .expand-button {
-    position: absolute;
-    left: 10px;
-  }
