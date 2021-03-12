@@ -56,7 +56,7 @@ function App() {
         <Base className="app ax-theme--day">
             <HeaderComponent searchInput={searchInput} setSearchInput={setSearchInput} input ={input} setInput={setInput} setSidebarExpanded={setSidebarExpanded} sidebarExpanded={sidebarExpanded} />
             <SidebarComponent filterList={filterList} setSidebarCategories={setSidebarCategories} sidebarCategories={sidebarCategories} setSearchInput={setSearchInput} input={input} setSidebarLimit={setSidebarLimit} expanded={sidebarExpanded} />
-            <FeedComponent responseData={responseData} sidebarCategories={sidebarCategories}/>
+            <FeedComponent responseData={responseData} setResponseData={setResponseData} sidebarCategories={sidebarCategories} setSearchInput={setSearchInput}/>
         </Base>
     );
 }
