@@ -1,86 +1,77 @@
 import React, {useState} from 'react';
-import axios from 'axios';
 import './Card.css';
 import {
-    Card,
-    CardCaption,
-    CardContent,
-    Separator,
-    Grid,
-    GridCell,
+    Badge,
+    Heading
   } from "@brandwatch/axiom-components";
-import './Card.css';
 
 // TODO - create a component which displays information about Characters
 
 // TODO - make sure CharacterCard is expecting the right props!
 export const CharacterCard = ({character}) => {
 
-    // const [character, setCharacter] = useState(null);
-
-    // const fetchData = async () => {
-    //     const response = await axios.get(
-    //       'https://www.anapioficeandfire.com/api/characters?pageSize=30'
-    //     );
-    //     console.log(response);
-    //     setCharacter(response.data);
-    //   };
-
       return <div className={'feed'} style={{height: "100%", width: "100%"}}>
-        {/* TODO - add a placeholder for an empty feed */}
-        {/* TODO - build up a list of results */}
-        {/* TODO [STRETCH] - update this list to be a list/grid of STRETCH_Cards */}
-        {/* <h1>Game of Thrones Characters</h1> */}
+  
 
-        {/* <button className="fetch-button" onClick={fetchData}>
-          Fetch Data
-        </button> */}
+              <div className="card">
 
-        <br/>
 
-        {/* <div className={"character"} style={{height: "100%", width: "100%"}}>
-        {character &&
-          character.map((character, index) => {
-            const titles = character.titles.join(', ');
-            const aliases = character.aliases.join(', '); */}
-
-            return (
-
-            {/* //  <Grid direction="row" horizontalAlign="around">
-
-            // <GridCell direction="column" fit="true" width="25"> */}
-
-              <Card border borderRadius="medium" shade="shade-1" shadow size="medium" hover>
-              <CardContent size="medium">
-
-              <div className="character" >
-                {/* <h3>Character {index + 1}</h3> */}
-                <h2>{character.name}</h2>
-                <Separator/>
+        <div className={"characters"} style={{height: "100%", width: "100%"}}>
+           
+                <Heading textSize={'headtitle'}>
+                <h2>{character.name || character.aliases[0]}</h2>
+                </Heading>
 
 
                 <div className="details" key="index">
-                  <p>👨: {character.playedBy}</p>
-                  <p>📖: {character.gender}</p>
-                  {/* <p>🏘️: {titles}</p>
-                  <p>⏰: {aliases}</p> */}
 
+                  {
+                    character.gender === 'Female' && <Heading textSize={'large'}>
+                    <strong>👩🏽‍⚖️</strong>: {character.gender}
+                    </Heading>
+                  }
 
+                  {
+                    character.gender === 'Male' && <Heading textSize={'large'}>
+                    <strong>🧑🏽‍⚖️</strong>: {character.gender}
+                    </Heading>
+                  }
 
+                  {
+                    character.playedBy[0] !== '' && <Heading textSize={'large'}>
+                    <strong>Played By</strong>: {character.playedBy}
+                    </Heading>
+                  }
 
+                  {
+                    character.born !== '' && <Heading textSize={'large'}>
+                    <strong>Birth</strong>: {character.born}
+                    </Heading>
+                  }
+
+                  {
+                    character.culture !== '' && <Heading textSize={'medium'}>
+                    <strong>Culture</strong>: {character.culture}
+                    </Heading>
+                  }
+
+                  {
+                      character.titles[0] !== '' && <Heading textSize={'small'}>
+                    <strong>Titles</strong>: <em>{character.titles.join(', ')}</em>
+                    </Heading>
+                  }
+                  {
+                      character.aliases[0] !== '' && <Heading textSize={'small'}>
+                    <strong>Other Names</strong>: <em>{character.aliases.join(', ')}</em>
+                    </Heading>
+                  }
+                <Badge size={'small'} color={character.died ? 'tiny-clanger': 'terra-form'}>
+                    {character.died || 'Alive'}
+                </Badge>
                 </div>
               </div>
-              </CardContent>
-              </Card>
-{/* 
-              // </GridCell> */}
 
-              {/* // </Grid> */}
-
-
-            );
-          {/* })} */}
+              </div>
+      
       </div>
-
-    // </div>
 };
