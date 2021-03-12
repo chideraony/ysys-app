@@ -22,20 +22,6 @@ function App() {
     );
   };
 
-  // useEffect(() => {
-  //     fetchFilteredData;
-  // }, [searchInput, sidebarCategories, sidebarLimit]);
-
-  const fetchFilteredData = () => {
-    getData(searchInput, sidebarCategories, sidebarLimit).finally((response) =>
-      setResponseData(response)
-    );
-  };
-
-  useEffect(() => {
-    fetchFilteredData();
-  }, [searchInput]);
-
   // do api call with (sidebarCategories, searchInput, sidebarLimit)
   // use response to set setResponseData(response)
 
