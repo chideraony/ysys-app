@@ -24,10 +24,12 @@ export const SidebarComponent = (props) => {
     setSidebarLimit,
     expanded,
     fetchFilteredData,
+    onSubmit
   } = props;
 
   const items = [10, 25, 50];
   const [selectedItem, setSelectedItem] = useState(10);
+  const [activeCategory, setActiveCategory] = useState();
 
   const handleDropdownChange = (value) => {
     setSidebarLimit(value);
@@ -49,8 +51,8 @@ export const SidebarComponent = (props) => {
                 <RadioButton
                   key={filter}
                   name={"filter"}
-                  checked={filter === sidebarCategories}
-                  onChange={() => setSidebarCategories(filter)}
+                  checked={filter === activeCategory}
+                  onChange={() => setActiveCategory(filter)}
                 >
                   {filter}
                 </RadioButton>
@@ -78,6 +80,7 @@ export const SidebarComponent = (props) => {
                       onClick={() => {
                         setSelectedItem(item);
                         handleDropdownChange(item);
+
                       }}
                       selected={selectedItem === item}
                     >
@@ -91,7 +94,9 @@ export const SidebarComponent = (props) => {
         </>
       )}
 
-      <Button onClick={() => fetchFilteredData()}>
+      <Button onClick={() => onSubmit({activeCategory})}>
+
+      {/* fetchFilteredData() */}
         {expanded ? "Search" : <Icon name={"refresh"} />}
       </Button>
     </div>
