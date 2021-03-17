@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./Card.css";
 import {
   CardImage,
@@ -8,6 +8,7 @@ import {
 
 // TODO - make sure BookCard is expecting the right props!
 export const BookCard = ({book}) => {
+  //check book exists
   const cleanedDate = new Date(book.released).toDateString();
   const authors = book.authors.join(", ");
 
@@ -37,8 +38,10 @@ export const BookCard = ({book}) => {
                       className="bookCover"
               
                       src={bookImage(book.name)}
-                      style="max-width: 100%; height: 150px;"
+                      height={"250px"}
                     ></CardImage>
+
+                    <br/>
                    
                       <div className="book">
                         <h2>{book.name}</h2>

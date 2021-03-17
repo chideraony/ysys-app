@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./HeaderComponent.css";
 import {
   Button,
@@ -11,15 +11,18 @@ import {
 // TODO - make sure HeaderComponent is expecting the right props (if any)!
 
 export const HeaderComponent = ({
-  searchInput,
-  setSearchInput,
-  input,
-  setInput,
+
+  // setSearchInput,
+
   fetchFilteredData,
   setSidebarExpanded,
   sidebarExpanded,
+  onSubmit
 }) => {
+  const [searchInput, setSearchInput] = useState("");
+
   return (
+    
     <header className={"app-header"}>
       {/* TODO [STRETCH] - add in any controls that you'd like in your header
              E.g, a search bar, a toggle button for the side bar, or just a plain header!
@@ -33,11 +36,12 @@ export const HeaderComponent = ({
         {sidebarExpanded ? "Hide filters" : "Show filters"}
       </Button>
 
-      <Heading textSize={"headline"}> A Better App of Ice and Fire </Heading>
+      <Heading textSize={"headline"}> APIce and Fire </Heading>
       <TextInput
         className={"header-search"}
         placeholder={"Search by name..."}
         // value={input}
+        value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         // onKeyPress={(e) => {
         //   if (e.key === "Enter") {
@@ -50,7 +54,8 @@ export const HeaderComponent = ({
           className="searchButton"
           variant="primary"
           align="right"
-          onClick={() => fetchFilteredData()}
+          onClick={() => onSubmit({searchInput})}
+          // onClick={() => fetchFilteredData()}
         >
           Search
         </TextInputButton>

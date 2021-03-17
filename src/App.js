@@ -1,5 +1,5 @@
 import "./App.css";
-import React, { Component, useEffect, useState } from "react";
+import React, { useState } from "react";
 import { HeaderComponent } from "./components/Header/HeaderComponent";
 import { SidebarComponent } from "./components/Sidebar/SidebarComponent";
 import { FeedComponent } from "./components/Feed/FeedComponent";
@@ -9,18 +9,27 @@ import { Base } from "@brandwatch/axiom-components";
 const filterList = ["Characters", "Houses", "Books"];
 
 function App() {
-  const [sidebarCategories, setSidebarCategories] = useState(filterList[0]);
-  const [searchInput, setSearchInput] = useState("");
+  // const [sidebarCategories, setSidebarCategories] = useState(filterList[0]);
+  // const [searchInput, setSearchInput] = useState("");
 
   const [sidebarLimit, setSidebarLimit] = useState(10);
-  const [responseData, setResponseData] = useState([]);
+  const [responseData, setResponseData] = useState({data: [], category: null});
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
 
-  const fetchFilteredData = () => {
-    getData(searchInput, sidebarCategories, sidebarLimit).then((response) =>
-      setResponseData(response)
+  // const fetchFilteredData = () => {
+  //   // setResponseData(null)
+  //   getData(searchInput, sidebarCategories, sidebarLimit).then((response) =>
+  //     setResponseData(response)
+  //   );
+  // };
+
+  const onSubmit = ({activeCategory=responseData.category, searchInput=""}) => {
+    console.log(activeCategory)
+    getData(searchInput, activeCategory, sidebarLimit).then((response) =>
+    setResponseData({data: response, category: activeCategory})
     );
-  };
+    // setSidebarCategories(activeCategory)
+  } 
 
   // do api call with (sidebarCategories, searchInput, sidebarLimit)
   // use response to set setResponseData(response)
@@ -48,24 +57,26 @@ function App() {
   return (
     <Base className="app ax-theme--day">
       <HeaderComponent
-        searchInput={searchInput}
-        setSearchInput={setSearchInput}
+        // searchInput={searchInput}
+        // setSearchInput={setSearchInput}
         setSidebarExpanded={setSidebarExpanded}
         sidebarExpanded={sidebarExpanded}
-        fetchFilteredData={fetchFilteredData}
+        onSubmit={onSubmit}
+        // fetchFilteredData={fetchFilteredData}
       />
       <div className="app-content">
         <SidebarComponent
           filterList={filterList}
-          setSidebarCategories={setSidebarCategories}
-          sidebarCategories={sidebarCategories}
+          // setSidebarCategories={setSidebarCategories}
+          // sidebarCategories={sidebarCategories}
           setSidebarLimit={setSidebarLimit}
           expanded={sidebarExpanded}
-          fetchFilteredData={fetchFilteredData}
+          // fetchFilteredData={fetchFilteredData}
+          onSubmit={onSubmit}
         />
         <FeedComponent
           responseData={responseData}
-          sidebarCategories={sidebarCategories}
+          // sidebarCategories={sidebarCategories}
         />
       </div>
     </Base>
