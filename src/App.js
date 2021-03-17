@@ -12,6 +12,7 @@ function App() {
   // const [sidebarCategories, setSidebarCategories] = useState(filterList[0]);
   // const [searchInput, setSearchInput] = useState("");
 
+  const [livingStatus, setLivingStatus] = useState(null);
   const [sidebarLimit, setSidebarLimit] = useState(10);
   const [responseData, setResponseData] = useState({data: [], category: null});
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
@@ -23,9 +24,15 @@ function App() {
   //   );
   // };
 
+  const setOption = (value) => {
+    console.log(value, "called");
+    setLivingStatus(value)
+  }
+
   const onSubmit = ({activeCategory=responseData.category, searchInput=""}) => {
     console.log(activeCategory)
-    getData(searchInput, activeCategory, sidebarLimit).then((response) =>
+    
+    getData(searchInput, activeCategory, sidebarLimit, livingStatus).then((response) =>
     setResponseData({data: response, category: activeCategory})
     );
     // setSidebarCategories(activeCategory)
@@ -72,6 +79,9 @@ function App() {
           setSidebarLimit={setSidebarLimit}
           expanded={sidebarExpanded}
           // fetchFilteredData={fetchFilteredData}
+          livingStatus={livingStatus}
+          setOption={setOption}
+          // setLivingStatus={setLivingStatus}
           onSubmit={onSubmit}
         />
         <FeedComponent

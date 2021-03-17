@@ -5,12 +5,21 @@
 //  - houses
 
 
-export const getData = (searchInput, category, sidebarLimit) => {
+export const getData = (searchInput, category, sidebarLimit, livingStatus) => {
     const search = searchInput ? `&name=${searchInput}` : '';
     console.log(searchInput)
+    console.log(livingStatus, "test")
     console.log(`https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${search}`)
+    console.log(`https://www.anapioficeandfire.com/api/characters?is${livingStatus}=true`)
+
+    if (category === "Characters" && livingStatus !== null) {
+        return fetch(`https://www.anapioficeandfire.com/api/characters?is${livingStatus}=true`)
+        .then(response => response.json())
+      }
+
     return fetch(`https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${search}`)
         .then(response => response.json())
+        
 }
 
 

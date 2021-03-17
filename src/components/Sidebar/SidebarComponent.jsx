@@ -24,16 +24,34 @@ export const SidebarComponent = (props) => {
     setSidebarLimit,
     expanded,
     fetchFilteredData,
-    onSubmit
+    onSubmit,
+    livingStatus,
+    setLivingStatus,
+    setOption
   } = props;
 
+  
+  const options = ["Alive", "Dead"];
   const items = [10, 25, 50];
   const [selectedItem, setSelectedItem] = useState(10);
+  const [selectedOption, setSelectedOption] = useState();
   const [activeCategory, setActiveCategory] = useState();
 
   const handleDropdownChange = (value) => {
     setSidebarLimit(value);
   };
+
+const handleStatusChange = (value) => {
+  setSelectedOption(value);
+  setOption(value)
+  // setLivingStatus(value)
+}
+
+
+// const handleSelectedOption = (value) => {
+  
+// }
+  console.log(selectedOption, "selected op")
 
   return (
     <div className={`app-sidebar ${expanded ? "expanded" : "collapsed"}`}>
@@ -91,10 +109,41 @@ export const SidebarComponent = (props) => {
               </DropdownContext>
             </DropdownSource>
           </Dropdown>
+
+          <Dropdown>
+            <DropdownTarget>
+              <TextInput
+                isTarget
+                onChange={setSelectedOption}
+                placeholder="Pick an Option"
+                value={selectedOption}
+              >
+                <TextInputIcon name="chevron-down" />
+              </TextInput>
+            </DropdownTarget>
+            <DropdownSource>
+              <DropdownContext>
+                <DropdownMenu>
+                  {options.map((option) => (
+                    <DropdownMenuItem
+                      key={option}
+                      onClick={() => {
+                        // setSelectedOption(option);
+                        handleStatusChange(option);
+                      }}
+                      selected={selectedOption === option}
+                    >
+                      {option}
+                    </DropdownMenuItem>
+                  ))}
+                </DropdownMenu>
+              </DropdownContext>
+            </DropdownSource>
+          </Dropdown>
         </>
       )}
 
-      <Button onClick={() => onSubmit({activeCategory})}>
+      <Button onClick={() => onSubmit({activeCategory, selectedOption})}>
 
       {/* fetchFilteredData() */}
         {expanded ? "Search" : <Icon name={"refresh"} />}
