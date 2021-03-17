@@ -36,7 +36,7 @@ export const HeaderComponent = ({
         {sidebarExpanded ? "Hide filters" : "Show filters"}
       </Button>
 
-      <Heading textSize={"headline"}> A Better App of Ice and Fire </Heading>
+      <Heading textSize={"headline"}> APIce and Fire </Heading>
       <TextInput
         className={"header-search"}
         placeholder={"Search by name..."}

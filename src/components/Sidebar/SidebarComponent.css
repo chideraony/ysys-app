@@ -2,7 +2,7 @@
 .app-sidebar {
   padding: 10px;
   border-right: 1px solid #ccc;
-  background-color: cadetblue;
+  background-color: lightblue;
   width: 250px;
   position: relative;
   transition: min-width 0.1s ease-out;
