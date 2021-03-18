@@ -4,24 +4,26 @@
 //  - characters
 //  - houses
 
-
 export const getData = (searchInput, category, sidebarLimit, livingStatus) => {
-    const search = searchInput ? `&name=${searchInput}` : '';
-    console.log(searchInput)
-    console.log(livingStatus, "test")
-    console.log(`https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${search}`)
-    console.log(`https://www.anapioficeandfire.com/api/characters?is${livingStatus}=true`)
+  const search = searchInput ? `&name=${searchInput}` : "";
+  var livingStatusQuery = "";
 
-    if (category === "Characters" && livingStatus !== null) {
-        return fetch(`https://www.anapioficeandfire.com/api/characters?is${livingStatus}=true`)
-        .then(response => response.json())
-      }
+  if (category === "Characters") {
+    if (livingStatus === "Alive") {
+      livingStatusQuery = "&isAlive=true";
+    } else if (livingStatus === "Dead") {
+      livingStatusQuery = "&isAlive=false";
+    }
+  }
 
-    return fetch(`https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${search}`)
-        .then(response => response.json())
-        
-}
+  console.log(
+    `https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${livingStatusQuery}${search}`
+  );
 
+  return fetch(
+    `https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${livingStatusQuery}${search}`
+  ).then((response) => response.json());
+};
 
 // TODO [STRETCH]
 //  customise function (or create another function) to retrieve extra data based on configuration (number of results/pages/search

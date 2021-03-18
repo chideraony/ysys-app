@@ -1,13 +1,11 @@
 import React from "react";
 import "./Card.css";
-import {
-  CardImage,
-} from "@brandwatch/axiom-components";
+import { CardImage } from "@brandwatch/axiom-components";
 
 // TODO - create a component which displays information about Books
 
 // TODO - make sure BookCard is expecting the right props!
-export const BookCard = ({book}) => {
+export const BookCard = ({ book }) => {
   //check book exists
   const cleanedDate = new Date(book.released).toDateString();
   const authors = book.authors.join(", ");
@@ -31,32 +29,28 @@ export const BookCard = ({book}) => {
   }
 
   return (
-    <div className={"feed"} style={{height: "100%", width: "100%"}}>
-  
-          <div className="card">
-                    <CardImage
-                      className="bookCover"
-              
-                      src={bookImage(book.name)}
-                      height={"250px"}
-                    ></CardImage>
+    <div className={"feed"} style={{ height: "100%", width: "100%" }}>
+      <div className="card">
+        <CardImage
+          className="bookCover"
+          src={bookImage(book.name)}
+          height={"250px"}
+        ></CardImage>
 
-                    <br/>
-                   
-                      <div className="book">
-                        <h2>{book.name}</h2>
-                        {/* <Separator /> */}
+        <br />
 
-                        <div className="details" key="index">
-                          <p>👨: {authors}</p>
-                          <p>📖: {book.numberOfPages} pages</p>
-                          <p>🏘️: {book.country}</p>
-                          <p>⏰: {cleanedDate}</p>
-                        </div>
-                      </div>
-                     
-                </div>
+        <div className="book">
+          <h2>{book.name}</h2>
+          {/* <Separator /> */}
 
+          <div className="details" key="index">
+            <p>👨: {authors}</p>
+            <p>📖: {book.numberOfPages} pages</p>
+            <p>🏘️: {book.country}</p>
+            <p>⏰: {cleanedDate}</p>
+          </div>
+        </div>
       </div>
+    </div>
   );
 };
