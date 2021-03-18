@@ -19,7 +19,7 @@ function App() {
   const [livingStatus, setLivingStatus] = useState(null);
   const [sidebarLimit, setSidebarLimit] = useState(10);
   const [selectedItem, setSelectedItem] = useState(10);
-  const [showSpoilers, setShowSpoilers] = useState(true);
+  const [spoilerFree, setSpoilerFree] = useState(false);
 
   const [responseData, setResponseData] = useState({
     data: [],
@@ -107,9 +107,11 @@ function App() {
           livingStatus={livingStatus}
           setOption={setOption}
           // setLivingStatus={setLivingStatus}
+          spoilerFree={spoilerFree}
+          setSpoilerFree={setSpoilerFree}
           onSubmit={onSubmit}
         />
-        <FeedComponent responseData={responseData} />
+        <FeedComponent responseData={responseData} spoilerFree={spoilerFree} />
       </div>
     </Base>
   );

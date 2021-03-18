@@ -35,6 +35,8 @@ export const SidebarComponent = (props) => {
     activeCategory,
     setActiveCategory,
     options,
+    spoilerFree,
+    setSpoilerFree,
     selectedItem,
     setSelectedItem,
     items,
@@ -104,49 +106,52 @@ export const SidebarComponent = (props) => {
           </Dropdown>
           {activeCategory === "Characters" && (
             <>
-              <Dropdown>
-                <DropdownTarget>
-                  <TextInput
-                    isTarget
-                    onChange={setSelectedOption}
-                    placeholder="Pick an Option"
-                    value={selectedOption}
-                  >
-                    <TextInputIcon name="chevron-down" />
-                  </TextInput>
-                </DropdownTarget>
-                <DropdownSource>
-                  <DropdownContext>
-                    <DropdownMenu>
-                      {options.map((option) => (
-                        <DropdownMenuItem
-                          key={option}
-                          onClick={() => {
-                            // setSelectedOption(option);
-                            handleStatusChange(option);
-                          }}
-                          selected={selectedOption === option}
-                        >
-                          {option}
-                        </DropdownMenuItem>
-                      ))}
-                    </DropdownMenu>
-                  </DropdownContext>
-                </DropdownSource>
-              </Dropdown>
-              {/* <CheckBoxGroup>
+              <CheckBoxGroup>
                 <CheckBox
                   name="spoilerFree"
-                  /* onChange={() => {
-                    setShowSpoilers(!showSpoilers);
-                  }}
                   title="Hides details "
+                  key={spoilerFree}
+                  checked={spoilerFree}
+                  onChange={() => setSpoilerFree(!spoilerFree)}
                 >
+                  {console.log(spoilerFree)}
                   Spoiler-free
                 </CheckBox>
               </CheckBoxGroup>
-              <br /> */}
+              {spoilerFree && <br />}
             </>
+          )}
+          {activeCategory === "Characters" && !spoilerFree && (
+            <Dropdown>
+              <DropdownTarget>
+                <TextInput
+                  isTarget
+                  onChange={setSelectedOption}
+                  placeholder="Pick an Option"
+                  value={selectedOption}
+                >
+                  <TextInputIcon name="chevron-down" />
+                </TextInput>
+              </DropdownTarget>
+              <DropdownSource>
+                <DropdownContext>
+                  <DropdownMenu>
+                    {options.map((option) => (
+                      <DropdownMenuItem
+                        key={option}
+                        onClick={() => {
+                          // setSelectedOption(option);
+                          handleStatusChange(option);
+                        }}
+                        selected={selectedOption === option}
+                      >
+                        {option}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenu>
+                </DropdownContext>
+              </DropdownSource>
+            </Dropdown>
           )}
         </>
       )}
