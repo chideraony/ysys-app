@@ -5,7 +5,7 @@ import { Badge, Heading, CardImage } from "@brandwatch/axiom-components";
 // TODO - create a component which displays information about Characters
 
 // TODO - make sure CharacterCard is expecting the right props!
-export const CharacterCard = ({ character }) => {
+export const CharacterCard = ({ character, spoilerFree }) => {
   function cultureImage(culture) {
     if (culture === "Braavosi") {
       return "https://i.imgur.com/c6QI1cP.jpg";
@@ -107,13 +107,15 @@ export const CharacterCard = ({ character }) => {
                 <em>{character.aliases.join(", ")}</em>
               </Heading>
             )}
-            <Badge
-              size={"small"}
-              position={"left"}
-              color={character.died ? "blast-off" : "giant-leap"}
-            >
-              {character.died || "Alive"}
-            </Badge>
+            {!spoilerFree && (
+              <Badge
+                size={"small"}
+                position={"left"}
+                color={character.died ? "blast-off" : "giant-leap"}
+              >
+                {character.died || "Alive"}
+              </Badge>
+            )}
           </div>
         </div>
       </div>

@@ -7,7 +7,7 @@ import { Text } from "@brandwatch/axiom-components";
 import "./FeedComponent.css";
 
 // TODO - make sure FeedComponent is expecting the right props!
-export const FeedComponent = ({ responseData }) => {
+export const FeedComponent = ({ responseData, spoilerFree }) => {
   return (
     <div className={"feed"}>
       {/* TODO - add a placeholder for an empty feed */}
@@ -24,7 +24,7 @@ export const FeedComponent = ({ responseData }) => {
           return (
             <div key={d.name + "-" + index}>
               {responseData.category === "Characters" && (
-                <CharacterCard character={d} />
+                <CharacterCard character={d} spoilerFree={spoilerFree} />
               )}
               {responseData.category === "Houses" && <HouseCard house={d} />}
               {responseData.category === "Books" && <BookCard book={d} />}
