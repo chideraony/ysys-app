@@ -13,6 +13,8 @@ import {
   DropdownMenuItem,
   DropdownMenu,
   Icon,
+  CheckBoxGroup,
+  CheckBox,
 } from "@brandwatch/axiom-components";
 
 // TODO - make sure SidebarComponent is expecting the right props!
@@ -24,27 +26,38 @@ export const SidebarComponent = (props) => {
     setSidebarLimit,
     expanded,
     fetchFilteredData,
-    onSubmit
+    onSubmit,
+    livingStatus,
+    setLivingStatus,
+    setOption,
+    selectedOption,
+    setSelectedOption,
+    activeCategory,
+    setActiveCategory,
+    options,
+    selectedItem,
+    setSelectedItem,
+    items,
   } = props;
-
-  const items = [10, 25, 50];
-  const [selectedItem, setSelectedItem] = useState(10);
-  const [activeCategory, setActiveCategory] = useState();
 
   const handleDropdownChange = (value) => {
     setSidebarLimit(value);
   };
 
+  const handleStatusChange = (value) => {
+    setSelectedOption(value);
+    setOption(value);
+    // setLivingStatus(value)
+  };
+
+  // const handleSelectedOption = (value) => {
+
+  // }
+
   return (
     <div className={`app-sidebar ${expanded ? "expanded" : "collapsed"}`}>
       {expanded && (
         <>
-          {/*  <RadioButtonGroup>
-        <RadioButton name="filter">Characters</RadioButton>
-        <RadioButton name="filter">Books</RadioButton>
-        <RadioButton name="filter">Houses</RadioButton>
-      </RadioButtonGroup> */}
-
           <RadioButtonGroup>
             {filterList.map((filter) => {
               return (
@@ -59,7 +72,6 @@ export const SidebarComponent = (props) => {
               );
             })}
           </RadioButtonGroup>
-
           <Dropdown>
             <DropdownTarget>
               <TextInput
@@ -80,7 +92,6 @@ export const SidebarComponent = (props) => {
                       onClick={() => {
                         setSelectedItem(item);
                         handleDropdownChange(item);
-
                       }}
                       selected={selectedItem === item}
                     >
@@ -91,13 +102,59 @@ export const SidebarComponent = (props) => {
               </DropdownContext>
             </DropdownSource>
           </Dropdown>
+          {activeCategory === "Characters" && (
+            <>
+              <Dropdown>
+                <DropdownTarget>
+                  <TextInput
+                    isTarget
+                    onChange={setSelectedOption}
+                    placeholder="Pick an Option"
+                    value={selectedOption}
+                  >
+                    <TextInputIcon name="chevron-down" />
+                  </TextInput>
+                </DropdownTarget>
+                <DropdownSource>
+                  <DropdownContext>
+                    <DropdownMenu>
+                      {options.map((option) => (
+                        <DropdownMenuItem
+                          key={option}
+                          onClick={() => {
+                            // setSelectedOption(option);
+                            handleStatusChange(option);
+                          }}
+                          selected={selectedOption === option}
+                        >
+                          {option}
+                        </DropdownMenuItem>
+                      ))}
+                    </DropdownMenu>
+                  </DropdownContext>
+                </DropdownSource>
+              </Dropdown>
+              {/* <CheckBoxGroup>
+                <CheckBox
+                  name="spoilerFree"
+                  /* onChange={() => {
+                    setShowSpoilers(!showSpoilers);
+                  }}
+                  title="Hides details "
+                >
+                  Spoiler-free
+                </CheckBox>
+              </CheckBoxGroup>
+              <br /> */}
+            </>
+          )}
         </>
       )}
 
-      <Button onClick={() => onSubmit({activeCategory})}>
-
-      {/* fetchFilteredData() */}
-        {expanded ? "Search" : <Icon name={"refresh"} />}
+      {/* <Button onClick={() => onSubmit({ activeCategory, selectedOption })}> */}
+      <Button onClick={() => onSubmit()}>
+        {/* fetchFilteredData() */}
+        {expanded ? "Display" : <Icon name={"refresh"} />}
       </Button>
     </div>
   );

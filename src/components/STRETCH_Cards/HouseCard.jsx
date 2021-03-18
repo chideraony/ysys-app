@@ -1,24 +1,23 @@
-import React, {useState} from 'react';
-import './Card.css';
+import React, { useState } from "react";
+import "./Card.css";
 import {
-    Card,
-    CardCaption,
-    CardContent,
-    Separator,
-    Grid,
-    GridCell,
-    Heading,
-    CardImage,
-    List,
-    ListItem
-  } from "@brandwatch/axiom-components";
-import './Card.css';
+  Card,
+  CardCaption,
+  CardContent,
+  Separator,
+  Grid,
+  GridCell,
+  Heading,
+  CardImage,
+  List,
+  ListItem,
+} from "@brandwatch/axiom-components";
+import "./Card.css";
 
 // TODO - create a component which displays information about Houses
 
 // TODO - make sure HouseCard is expecting the right props!
-export const HouseCard = ({house}) => {
-
+export const HouseCard = ({ house }) => {
   function houseImage(region) {
     if (region === "The Riverlands") {
       return "https://i.imgur.com/ZmQEe51.jpg";
@@ -45,81 +44,80 @@ export const HouseCard = ({house}) => {
     }
   }
 
-      return <div className={'feed'} style={{height: "100%", width: "100%"}}>
-
+  return (
+    <div className={"feed"} style={{ height: "100%", width: "100%" }}>
       <div className="card">
+        <div className={"houses"} style={{ height: "100%", width: "100%" }}>
+          <Heading>
+            <h2>{house.name}</h2>
+          </Heading>
 
-        <div className={"houses"} style={{height: "100%", width: "100%"}}>
+          <CardImage
+            className="houseImage"
+            src={houseImage(house.region)}
+            height={"150px"}
+            width={"300px"}
+          >
+            <CardCaption textStrong>
+              {" "}
+              <List style="center"> {house.region} </List>{" "}
+            </CardCaption>
+          </CardImage>
 
-                <Heading>
-                <h2>{house.name}</h2>
-                </Heading>
+          <br />
 
-                <CardImage
-                      className="houseImage"
-                      src={houseImage(house.region)}
-                      height={"150px"}
-                      width={"300px"}>
-                  <CardCaption textStrong> <List style="center">  {house.region}  </List> </CardCaption>
-                    </CardImage>
-             
-                <br/>
-                
-                <div className="details" key="index">
+          <div className="details" key="index">
+            {house.region !== "" && (
+              <Heading textSize={"large"}>
+                <strong>🏘️</strong>: {house.region}
+              </Heading>
+            )}
 
-                 {
-                      house.region !== '' && <Heading textSize={'large'}>
-                    <strong>🏘️</strong>: {house.region}
-                    </Heading>
-                  }
+            {house.words !== "" && (
+              <Heading textSize={"small"}>
+                <strong>Words</strong>: <em>{house.words}</em>
+              </Heading>
+            )}
 
-                  {
-                      house.words !== '' && <Heading textSize={'small'}>
-                    <strong>Words</strong>: <em>{house.words}</em>
-                    </Heading>
-                  }
+            {house.founded !== "" && (
+              <Heading textSize={"small"}>
+                <strong>Founded</strong>: <em>{house.founded}</em>
+              </Heading>
+            )}
 
-                  {
-                      house.founded !== '' && <Heading textSize={'small'}>
-                    <strong>Founded</strong>: <em>{house.founded}</em>
-                    </Heading>
-                  }
+            {house.diedOut !== "" && (
+              <Heading textSize={"small"}>
+                <strong>Died out</strong>: <em>{house.diedOut}</em>
+              </Heading>
+            )}
 
-                  {
-                      house.diedOut !== '' && <Heading textSize={'small'}>
-                    <strong>Died out</strong>: <em>{house.diedOut}</em>
-                    </Heading>
-                  } 
+            {house.ancestralWeapons && house.ancestralWeapons[0] !== "" && (
+              <Heading textSize={"small"}>
+                <strong>Ancestral weapons</strong>:{" "}
+                <em>{house.ancestralWeapons.join(", ")}</em>
+              </Heading>
+            )}
 
-                  {
-                      house.ancestralWeapons && house.ancestralWeapons[0] !== '' && <Heading textSize={'small'}>
-                    <strong>Ancestral weapons</strong>: <em>{house.ancestralWeapons.join(', ')}</em>
-                    </Heading>
-                  }
+            {house.seats && house.seats[0] !== "" && (
+              <Heading textSize={"large"}>
+                <strong>House seats</strong>: <em>{house.seats.join(", ")}</em>
+              </Heading>
+            )}
 
-                  {
-                      house.seats && house.seats[0] !== '' && <Heading textSize={'large'}>
-                    <strong>House seats</strong>: <em>{house.seats.join(', ')}</em>
-                    </Heading>
-                  } 
-                 
+            {house.titles && house.titles[0] !== "" && (
+              <Heading textSize={"small"}>
+                <strong>Titles</strong>: <em>{house.titles.join(", ")}</em>
+              </Heading>
+            )}
 
-                  {
-                      house.titles && house.titles[0] !== '' && <Heading textSize={'small'}>
-                    <strong>Titles</strong>: <em>{house.titles.join(', ')}</em>
-                    </Heading>
-                  }
-
-                  {
-                    house.coatOfArms !== '' && <Heading textSize={'large'}>
-                    <strong>Coat of arms</strong>: {house.coatOfArms}
-                    </Heading>
-                  }  
-                </div>
-              </div>
-         
-          
+            {house.coatOfArms !== "" && (
+              <Heading textSize={"large"}>
+                <strong>Coat of arms</strong>: {house.coatOfArms}
+              </Heading>
+            )}
+          </div>
+        </div>
       </div>
-
     </div>
+  );
 };

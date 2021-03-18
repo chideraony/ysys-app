@@ -7,14 +7,24 @@ import { getData } from "./api/api";
 import { Base } from "@brandwatch/axiom-components";
 
 const filterList = ["Characters", "Houses", "Books"];
+const options = ["Alive or Dead", "Alive", "Dead"];
+const items = [10, 25, 50];
 
 function App() {
   // const [sidebarCategories, setSidebarCategories] = useState(filterList[0]);
-  // const [searchInput, setSearchInput] = useState("");
-
-  const [sidebarLimit, setSidebarLimit] = useState(10);
-  const [responseData, setResponseData] = useState({data: [], category: null});
+  const [searchInput, setSearchInput] = useState("");
   const [sidebarExpanded, setSidebarExpanded] = useState(true);
+  const [activeCategory, setActiveCategory] = useState("Characters");
+  const [selectedOption, setSelectedOption] = useState("Alive or Dead");
+  const [livingStatus, setLivingStatus] = useState(null);
+  const [sidebarLimit, setSidebarLimit] = useState(10);
+  const [selectedItem, setSelectedItem] = useState(10);
+  const [showSpoilers, setShowSpoilers] = useState(true);
+
+  const [responseData, setResponseData] = useState({
+    data: [],
+    category: null,
+  });
 
   // const fetchFilteredData = () => {
   //   // setResponseData(null)
@@ -23,13 +33,26 @@ function App() {
   //   );
   // };
 
-  const onSubmit = ({activeCategory=responseData.category, searchInput=""}) => {
-    console.log(activeCategory)
-    getData(searchInput, activeCategory, sidebarLimit).then((response) =>
-    setResponseData({data: response, category: activeCategory})
+  const setOption = (value) => {
+    setLivingStatus(value);
+  };
+
+  const onSubmit = (/* {
+    activeCategory = responseData.category,
+    searchInput = "",
+  } */) => {
+    /* console.log(activeCategory); */
+
+    getData(
+      searchInput,
+      activeCategory,
+      sidebarLimit,
+      livingStatus
+    ).then((response) =>
+      setResponseData({ data: response, category: activeCategory })
     );
     // setSidebarCategories(activeCategory)
-  } 
+  };
 
   // do api call with (sidebarCategories, searchInput, sidebarLimit)
   // use response to set setResponseData(response)
@@ -57,27 +80,36 @@ function App() {
   return (
     <Base className="app ax-theme--day">
       <HeaderComponent
-        // searchInput={searchInput}
-        // setSearchInput={setSearchInput}
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
         setSidebarExpanded={setSidebarExpanded}
         sidebarExpanded={sidebarExpanded}
         onSubmit={onSubmit}
         // fetchFilteredData={fetchFilteredData}
       />
+
       <div className="app-content">
         <SidebarComponent
           filterList={filterList}
           // setSidebarCategories={setSidebarCategories}
           // sidebarCategories={sidebarCategories}
           setSidebarLimit={setSidebarLimit}
+          selectedOption={selectedOption}
+          setSelectedOption={setSelectedOption}
+          activeCategory={activeCategory}
+          setActiveCategory={setActiveCategory}
+          options={options}
+          items={items}
+          selectedItem={selectedItem}
+          setSelectedItem={setSelectedItem}
           expanded={sidebarExpanded}
           // fetchFilteredData={fetchFilteredData}
+          livingStatus={livingStatus}
+          setOption={setOption}
+          // setLivingStatus={setLivingStatus}
           onSubmit={onSubmit}
         />
-        <FeedComponent
-          responseData={responseData}
-          // sidebarCategories={sidebarCategories}
-        />
+        <FeedComponent responseData={responseData} />
       </div>
     </Base>
   );

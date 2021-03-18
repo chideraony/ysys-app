@@ -11,18 +11,14 @@ import {
 // TODO - make sure HeaderComponent is expecting the right props (if any)!
 
 export const HeaderComponent = ({
-
-  // setSearchInput,
-
+  searchInput,
+  setSearchInput,
   fetchFilteredData,
   setSidebarExpanded,
   sidebarExpanded,
-  onSubmit
+  onSubmit,
 }) => {
-  const [searchInput, setSearchInput] = useState("");
-
   return (
-    
     <header className={"app-header"}>
       {/* TODO [STRETCH] - add in any controls that you'd like in your header
              E.g, a search bar, a toggle button for the side bar, or just a plain header!
@@ -43,18 +39,18 @@ export const HeaderComponent = ({
         // value={input}
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
-        // onKeyPress={(e) => {
-        //   if (e.key === "Enter") {
-        //     setSearchInput(input);
-        //   }
-        // }}
+        onKeyPress={(e) => {
+          if (e.key === "Enter") {
+            onSubmit();
+          }
+        }}
       >
         <TextInputIcon align="left" name="magnify-glass" />
         <TextInputButton
           className="searchButton"
           variant="primary"
           align="right"
-          onClick={() => onSubmit({searchInput})}
+          onClick={() => onSubmit({ searchInput })}
           // onClick={() => fetchFilteredData()}
         >
           Search
