@@ -17,6 +17,10 @@ export const FeedComponent = ({ responseData, spoilerFree }) => {
       {responseData.data.length === 0 && (
         <div className={"empty-feed-prompt"}>
           <Text textColor="disabled">Nothing to show...</Text>
+            <img src={"https://i.pinimg.com/originals/f5/44/9f/f5449f2145844a801a1e192e29e3a168.jpg"}
+            className={"holding-image"}
+            height={"600px"}
+            width={"750px"}></img>
         </div>
       )}
       {responseData &&

@@ -32,9 +32,13 @@ export const SidebarComponent = (props) => {
     setOption,
     selectedOption,
     setSelectedOption,
+    setSelectedGender,
+    setGender,
+    selectedGender,
     activeCategory,
     setActiveCategory,
     options,
+    gender,
     spoilerFree,
     setSpoilerFree,
     selectedItem,
@@ -50,6 +54,11 @@ export const SidebarComponent = (props) => {
     setSelectedOption(value);
     setOption(value);
     // setLivingStatus(value)
+  };
+
+  const handleGenderChange = (value) => {
+    setSelectedGender(value);
+    setGender(value);
   };
 
   // const handleSelectedOption = (value) => {
@@ -146,6 +155,38 @@ export const SidebarComponent = (props) => {
                         selected={selectedOption === option}
                       >
                         {option}
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenu>
+                </DropdownContext>
+              </DropdownSource>
+            </Dropdown>
+          )}
+
+        {activeCategory === "Characters" && (
+          <Dropdown>
+              <DropdownTarget>
+                <TextInput
+                  isTarget
+                  onChange={setSelectedGender}
+                  placeholder="Pick an Option"
+                  value={selectedGender}
+                >
+                  <TextInputIcon name="chevron-down" />
+                </TextInput>
+              </DropdownTarget>
+              <DropdownSource>
+                <DropdownContext>
+                  <DropdownMenu>
+                    {gender.map((gender) => (
+                      <DropdownMenuItem
+                        key={gender}
+                        onClick={() => {
+                          handleGenderChange(gender);
+                        }}
+                        selected={selectedGender === gender}
+                      >
+                        {gender}
                       </DropdownMenuItem>
                     ))}
                   </DropdownMenu>

@@ -9,6 +9,10 @@
   justify-content: center;
 }
 
+.characterImage {
+  border-radius: 5px;
+}
+
 .card {
   background: #fff;
   position: relative;

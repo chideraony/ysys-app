@@ -4,11 +4,18 @@
 //  - characters
 //  - houses
 
-export const getData = (searchInput, category, sidebarLimit, livingStatus) => {
+export const getData = (searchInput, category, sidebarLimit, livingStatus, selectedGenderStatus) => {
   const search = searchInput ? `&name=${searchInput}` : "";
   var livingStatusQuery = "";
+  var genderQuery = "";
+  console.log("gender " + selectedGenderStatus)
 
   if (category === "Characters") {
+    if (selectedGenderStatus === "Female") {
+      genderQuery = "&gender=female";
+    } else if (selectedGenderStatus === "Male") {
+      genderQuery = "&gender=male";
+    }
     if (livingStatus === "Alive") {
       livingStatusQuery = "&isAlive=true";
     } else if (livingStatus === "Dead") {
@@ -17,11 +24,11 @@ export const getData = (searchInput, category, sidebarLimit, livingStatus) => {
   }
 
   console.log(
-    `https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${livingStatusQuery}${search}`
+    `https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${livingStatusQuery}${genderQuery}${search}`
   );
 
   return fetch(
-    `https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${livingStatusQuery}${search}`
+    `https://anapioficeandfire.com/api/${category}?pageSize=${sidebarLimit}${livingStatusQuery}${genderQuery}${search}`
   ).then((response) => response.json());
 };
 

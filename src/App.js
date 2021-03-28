@@ -9,6 +9,7 @@ import { Base } from "@brandwatch/axiom-components";
 const filterList = ["Characters", "Houses", "Books"];
 const options = ["Alive or Dead", "Alive", "Dead"];
 const items = [10, 25, 50];
+const gender = ["Male or Female", "Male", "Female"];
 
 function App() {
   // const [sidebarCategories, setSidebarCategories] = useState(filterList[0]);
@@ -17,6 +18,8 @@ function App() {
   const [activeCategory, setActiveCategory] = useState("Characters");
   const [selectedOption, setSelectedOption] = useState("Alive or Dead");
   const [livingStatus, setLivingStatus] = useState(null);
+  const [selectedGender, setSelectedGender] = useState("Male or Female");
+  const [selectedGenderStatus, setSelectedGenderStatus] = useState(null);
   const [sidebarLimit, setSidebarLimit] = useState(10);
   const [selectedItem, setSelectedItem] = useState(10);
   const [spoilerFree, setSpoilerFree] = useState(false);
@@ -37,6 +40,10 @@ function App() {
     setLivingStatus(value);
   };
 
+  const setGender = (value) => {
+    setSelectedGenderStatus(value);
+  };
+
   const onSubmit = (/* {
     activeCategory = responseData.category,
     searchInput = "",
@@ -47,7 +54,8 @@ function App() {
       searchInput,
       activeCategory,
       sidebarLimit,
-      livingStatus
+      livingStatus,
+      selectedGenderStatus
     ).then((response) =>
       setResponseData({ data: response, category: activeCategory })
     );
@@ -106,6 +114,10 @@ function App() {
           // fetchFilteredData={fetchFilteredData}
           livingStatus={livingStatus}
           setOption={setOption}
+          selectedGender={selectedGender}
+          setSelectedGender={setSelectedGender}
+          gender={gender}
+          setGender={setGender}
           // setLivingStatus={setLivingStatus}
           spoilerFree={spoilerFree}
           setSpoilerFree={setSpoilerFree}

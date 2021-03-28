@@ -6,46 +6,74 @@ import { Badge, Heading, CardImage } from "@brandwatch/axiom-components";
 
 // TODO - make sure CharacterCard is expecting the right props!
 export const CharacterCard = ({ character, spoilerFree }) => {
+  
   function cultureImage(culture) {
-    if (culture === "Braavosi") {
-      return "https://i.imgur.com/c6QI1cP.jpg";
-    } else if (culture === "Westeros") {
-      return "https://i.imgur.com/xDrXkJS.jpg";
-    } else if (culture === "Valyrian") {
-      return "https://i.imgur.com/0o6bNpc.jpeg";
-    } else if (culture === "Northmen") {
-      return "https://i.imgur.com/Seyls7T.jpg";
-    } else if (culture === "First Men") {
-      return "https://i.imgur.com/CMpQ7zG.jpg";
-    } else if (culture === "Asshai") {
-      return "https://i.imgur.com/gmRO91Q.jpg";
-    } else if (culture === "Andal") {
-      return "https://i.imgur.com/h3o0t7q.jpg";
-    } else if (culture === "Naathi") {
-      return "https://i.imgur.com/nEmog4o.jpg?1";
-    } else if (culture === "Ironborn") {
-      return "https://i.imgur.com/nqWyKG9.jpg";
-    } else if (culture === "Valemen") {
-      return "https://i.imgur.com/5lJ6U7j.png";
-    } else if (culture === "Crannogmen") {
-      return "https://i.imgur.com/uuWq3Ou.jpg";
-    } else if (culture === "Thenn") {
-      return "https://i.imgur.com/VIevFSY.jpg";
-    } else if (culture === "Free Folk" || culture === "Free folk") {
-      return "https://i.imgur.com/DoX4j2A.jpg";
-    } else if (culture === "Reach") {
-      return "https://i.imgur.com/zhA2Trn.jpg";
-    } else if (culture === "Myrish") {
-      return "https://i.imgur.com/SfDG5IU.jpg";
-    } else if (culture === "Rivermen") {
-      return "https://i.imgur.com/ZmQEe51.jpg";
-    } else if (culture === "Westerlands" || culture === "Westerman") {
-      return "https://i.imgur.com/xaHS3zt.jpg";
-    } else if (culture === "Lysene") {
-      return "https://i.imgur.com/fabkXcr.jpg?1";
-    } else {
-      return "https://i.imgur.com/iaqlrMy.jpg";
-    }
+
+  const characterImages = {
+    "Braavosi": "https://i.imgur.com/c6QI1cP.jpg",
+    default : "https://i.imgur.com/iaqlrMy.jpg",
+    "Westeros": "https://i.imgur.com/xDrXkJS.jpg",
+    "Valyrian": "https://i.imgur.com/0o6bNpc.jpeg",
+    "Northmen": "https://i.imgur.com/Seyls7T.jpg",
+    "First Men": "https://i.imgur.com/CMpQ7zG.jpg",
+    "Asshai": "https://i.imgur.com/gmRO91Q.jpg",
+    "Andal": "https://i.imgur.com/h3o0t7q.jpg",
+    "Naathi": "https://i.imgur.com/nEmog4o.jpg?1",
+    "Ironborn": "https://i.imgur.com/nqWyKG9.jpg",
+    "Valemen": "https://i.imgur.com/5lJ6U7j.png",
+    "Crannogmen": "https://i.imgur.com/uuWq3Ou.jpg",
+    "Thenn": "https://i.imgur.com/VIevFSY.jpg",
+    "Free Folk": "https://i.imgur.com/DoX4j2A.jpg",
+    "Free folk": "https://i.imgur.com/DoX4j2A.jpg",
+    "Reach": "https://i.imgur.com/zhA2Trn.jpg",
+    "Myrish": "https://i.imgur.com/SfDG5IU.jpg",
+    "Rivermen": "https://i.imgur.com/ZmQEe51.jpg",
+    "Westerlands": "https://i.imgur.com/xaHS3zt.jpg",
+    "Westerman": "https://i.imgur.com/xaHS3zt.jpg",
+    "Lysene": "https://i.imgur.com/fabkXcr.jpg?1"
+  }
+
+  return characterImages[culture] ? characterImages[culture] : characterImages.default
+
+    // if (culture === "Braavosi") {
+    //   return "https://i.imgur.com/c6QI1cP.jpg";
+    // } else if (culture === "Westeros") {
+    //   return "https://i.imgur.com/xDrXkJS.jpg";
+    // } else if (culture === "Valyrian") {
+    //   return "https://i.imgur.com/0o6bNpc.jpeg";
+    // } else if (culture === "Northmen") {
+    //   return "https://i.imgur.com/Seyls7T.jpg";
+    // } else if (culture === "First Men") {
+    //   return "https://i.imgur.com/CMpQ7zG.jpg";
+    // } else if (culture === "Asshai") {
+    //   return "https://i.imgur.com/gmRO91Q.jpg";
+    // } else if (culture === "Andal") {
+    //   return "https://i.imgur.com/h3o0t7q.jpg";
+    // } else if (culture === "Naathi") {
+    //   return "https://i.imgur.com/nEmog4o.jpg?1";
+    // } else if (culture === "Ironborn") {
+    //   return "https://i.imgur.com/nqWyKG9.jpg";
+    // } else if (culture === "Valemen") {
+    //   return "https://i.imgur.com/5lJ6U7j.png";
+    // } else if (culture === "Crannogmen") {
+    //   return "https://i.imgur.com/uuWq3Ou.jpg";
+    // } else if (culture === "Thenn") {
+    //   return "https://i.imgur.com/VIevFSY.jpg";
+    // } else if (culture === "Free Folk" || culture === "Free folk") {
+    //   return "https://i.imgur.com/DoX4j2A.jpg";
+    // } else if (culture === "Reach") {
+    //   return "https://i.imgur.com/zhA2Trn.jpg";
+    // } else if (culture === "Myrish") {
+    //   return "https://i.imgur.com/SfDG5IU.jpg";
+    // } else if (culture === "Rivermen") {
+    //   return "https://i.imgur.com/ZmQEe51.jpg";
+    // } else if (culture === "Westerlands" || culture === "Westerman") {
+    //   return "https://i.imgur.com/xaHS3zt.jpg";
+    // } else if (culture === "Lysene") {
+    //   return "https://i.imgur.com/fabkXcr.jpg?1";
+    // } else {
+    //   return "https://i.imgur.com/iaqlrMy.jpg";
+    // }
   }
 
   return (
